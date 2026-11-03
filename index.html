@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070B10">
+  <meta name="description" content="Vitalik the Shoggoth ($VITOGGOTH). HES DRESSED AS SHOGGOTH. A green velvet cloak, a yellow smile, too many eyes, on Ethereum.">
+  <title>Vitalik the Shoggoth ($VITOGGOTH) — HES DRESSED AS SHOGGOTH</title>
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Creepster&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            smile: "#F5D90A",
+            cloak: "#6E8F38",
+            cloakdeep: "#1A2A12",
+            bone: "#F3F0E2",
+            abyss: "#070B10",
+            shirt: "#1B3A5F"
+          },
+          fontFamily: {
+            display: ['"Black Ops One"', "Impact", "sans-serif"],
+            sans: ["Outfit", "system-ui", "sans-serif"],
+            creep: ["Creepster", "cursive"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --smile: #F5D90A;
+      --cloak: #6E8F38;
+      --abyss: #070B10;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      color: #E7EAD8;
+      font-family: Outfit, system-ui, sans-serif;
+      background-color: var(--abyss);
+      background-image: url("banner.png");
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 50% 18%, rgba(7, 11, 16, 0.18), rgba(7, 11, 16, 0.72) 62%),
+        linear-gradient(180deg, rgba(7, 11, 16, 0.42) 0%, rgba(7, 11, 16, 0.58) 30%, rgba(7, 11, 16, 0.84) 68%, rgba(7, 11, 16, 0.92) 100%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.18;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.55'/></svg>");
+    }
+
+    .page { position: relative; z-index: 2; }
+
+    ::selection { background: var(--smile); color: #14210c; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #070B10; }
+    ::-webkit-scrollbar-thumb { background: #5c7a32; border-radius: 99px; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--smile);
+      outline-offset: 3px;
+    }
+
+    .velvet {
+      background-color: rgba(8, 14, 10, 0.78);
+      background-image:
+        radial-gradient(900px 280px at 0% 0%, rgba(110, 143, 56, 0.28), transparent 55%),
+        radial-gradient(700px 240px at 100% 100%, rgba(245, 217, 10, 0.08), transparent 46%);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(245, 217, 10, 0.12);
+    }
+
+    .btn-buy, .btn-chart, .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-buy {
+      background: var(--smile);
+      color: #14210c;
+      padding: 0.95rem 1.5rem;
+      box-shadow: 0 0 0 2px #14210c, 0 7px 0 #3f5c22, 0 14px 30px rgba(245, 217, 10, 0.22);
+    }
+
+    .btn-buy:hover { transform: translateY(2px); box-shadow: 0 0 0 2px #14210c, 0 4px 0 #3f5c22, 0 10px 24px rgba(245, 217, 10, 0.28); }
+    .btn-buy:active { transform: translateY(6px); box-shadow: 0 0 0 2px #14210c, 0 1px 0 #3f5c22; }
+
+    .btn-chart {
+      background: transparent;
+      color: var(--smile);
+      padding: 0.95rem 1.45rem;
+      border: 2px solid #8FB34A;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-chart:hover { background: rgba(110, 143, 56, 0.2); transform: translateY(-1px); }
+
+    .btn-copy {
+      background: var(--smile);
+      color: #14210c;
+      padding: 0.55rem 0.95rem;
+      font-size: 0.75rem;
+      box-shadow: 0 4px 0 #3f5c22;
+    }
+
+    .btn-copy:hover { transform: translateY(1px); box-shadow: 0 2px 0 #3f5c22; }
+
+    .ca-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1.5px dashed rgba(166, 201, 90, 0.85);
+      background: rgba(6, 10, 8, 0.72);
+      border-radius: 999px;
+      padding: 0.4rem 0.4rem 0.4rem 1rem;
+    }
+
+    .ca-code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: 0.14em;
+      user-select: all;
+      color: var(--smile);
+    }
+
+    .mask {
+      width: 1.15em;
+      height: 1.15em;
+      border-radius: 999px;
+      background: #F5D90A;
+      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12), 0 0 0 2px #14210c;
+      position: relative;
+      display: inline-block;
+      flex: none;
+    }
+
+    .mask::after {
+      content: "";
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      top: 46%;
+      height: 38%;
+      border-bottom: 3px solid #161616;
+      border-radius: 0 0 40px 40px;
+    }
+
+    .eye {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, #fff, #f3f0e4 55%, #d9d3c2);
+      box-shadow: 0 0 0 3px #3e5622, 0 0 16px rgba(245, 217, 10, 0.35);
+      position: relative;
+      display: inline-block;
+      flex: none;
+    }
+
+    .eye-sm { width: 18px; height: 18px; box-shadow: 0 0 0 2px #3e5622, 0 0 10px rgba(245, 217, 10, 0.28); }
+
+    .pupil {
+      position: absolute;
+      width: 42%;
+      height: 42%;
+      left: 29%;
+      top: 29%;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, #4a4a4a, #0a0a0a 62%);
+    }
+
+    .orbit {
+      position: absolute;
+      inset: -13%;
+      animation: spin 28s linear infinite;
+      pointer-events: none;
+    }
+
+    .orbit-item { position: absolute; left: var(--x); top: var(--y); }
+    .counterspin {
+      display: block;
+      animation: counterspin 28s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes counterspin { to { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+    .ticker {
+      overflow: hidden;
+      background: rgba(7, 11, 16, 0.78);
+      border-block: 1px dashed rgba(143, 179, 74, 0.65);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+
+    .ticker-row {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      padding: 0.85rem 1.4rem;
+      white-space: nowrap;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--smile);
+    }
+
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    .seam {
+      height: 34px;
+      background-image: radial-gradient(circle at 16px 17px, #0c0c0c 0 3.5px, #f6f3e6 4.5px 8px, #3f5a24 9px 11px, transparent 12px);
+      background-size: 78px 34px;
+      background-repeat: repeat-x;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 5.5rem;
+      transform: translateX(-50%) translateY(12px);
+      background: var(--smile);
+      color: #14210c;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 0.7rem 1.1rem;
+      border-radius: 999px;
+      z-index: 80;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .chart-frame {
+      height: 560px;
+      border: 0;
+      width: 100%;
+      background: #0b1210;
+    }
+
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; }
+      .orbit { inset: -7%; }
+      .chart-frame { height: 460px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .orbit, .counterspin, .ticker-track { animation: none; }
+      .counterspin { transform: translate(-50%, -50%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="#top" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-smile focus:px-4 focus:py-2 focus:text-abyss">Skip to content</a>
+
+    <header class="sticky top-0 z-40 border-b border-cloak/40 bg-abyss/75 backdrop-blur-md">
+      <div class="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
+        <a href="#top" class="flex min-w-0 items-center gap-2.5">
+          <img src="logo.png" alt="" width="44" height="44" class="h-11 w-11 rounded-full border-2 border-smile object-cover">
+          <span class="truncate font-display text-lg tracking-wide text-smile sm:text-xl">VITOGGOTH</span>
+        </a>
+
+        <nav class="ml-4 hidden items-center gap-5 text-sm font-semibold uppercase tracking-[0.16em] text-bone/90 md:flex" aria-label="Page">
+          <a class="hover:text-smile" href="#costume">Costume</a>
+          <a class="hover:text-smile" href="#how">How to Buy</a>
+          <a class="hover:text-smile" href="#chart">Chart</a>
+        </nav>
+
+        <div class="ml-auto flex items-center gap-2">
+          <a href="https://t.me/Vitoggoth" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="transition hover:scale-105">
+            <img src="tg.png" alt="" width="44" height="44" class="h-10 w-10 rounded-full object-cover sm:h-11 sm:w-11">
+          </a>
+          <a href="https://x.com/Vitoggoth" target="_blank" rel="noopener noreferrer" aria-label="X" class="transition hover:scale-105">
+            <img src="x.png" alt="" width="44" height="44" class="h-10 w-10 rounded-lg object-cover ring-1 ring-smile/50 sm:h-11 sm:w-11">
+          </a>
+          <div class="ml-1 hidden items-center gap-2 rounded-full border border-dashed border-cloak bg-black/40 py-1 pl-3 pr-1 lg:flex">
+            <span class="text-[10px] font-bold tracking-[0.18em] text-bone/70">CA</span>
+            <code class="ca-code text-sm">TBA</code>
+            <button type="button" class="btn-copy" data-copy data-label="COPY">COPY</button>
+          </div>
+          <a class="btn-buy ml-1 hidden !px-4 !py-2 text-xs sm:inline-flex" href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="mx-auto grid max-w-6xl items-center gap-8 px-4 pb-8 pt-10 lg:grid-cols-[1.05fr_0.95fr] lg:pt-16">
+        <div class="velvet rounded-[2rem] border border-cloak/50 p-6 sm:p-8 md:p-10">
+          <p class="text-xs font-bold uppercase tracking-[0.42em] text-cloak">Ethereum meme · symbol Vitoggoth</p>
+          <h1 class="mt-4 font-display text-[3.1rem] leading-[0.88] text-bone sm:text-7xl">
+            VITALIK<br>
+            <span class="text-smile">THE SHOGGOTH</span>
+          </h1>
+          <p class="mt-5 inline-flex items-center gap-2 rounded-full bg-smile px-3 py-1.5 text-sm font-black tracking-wide text-[#14210c] sm:text-base">
+            <span class="mask" aria-hidden="true"></span>
+            HES DRESSED AS SHOGGOTH
+          </p>
+          <p class="mt-5 max-w-xl text-base leading-relaxed text-bone/90 sm:text-lg">
+            Velvet cloak. Yellow smile. A phone in one hand and eyes in every fold.
+            He did not crawl out of a trench. He put the costume on.
+            <strong class="font-extrabold text-smile"> HES DRESSED AS SHOGGOTH.</strong>
+          </p>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a class="btn-buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+            <a class="btn-chart" href="https://dexscreener.com/ethereum/TBA" target="_blank" rel="noopener noreferrer">Chart</a>
+          </div>
+
+          <div class="ca-bar mt-6 max-w-xl">
+            <div class="min-w-0 flex-1">
+              <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-bone/60">Contract address</p>
+              <code class="ca-code block truncate text-base sm:text-lg">TBA</code>
+            </div>
+            <button type="button" class="btn-copy" data-copy data-label="COPY">COPY</button>
+          </div>
+
+          <ul class="mt-5 flex flex-wrap gap-2 text-[11px] font-bold uppercase tracking-[0.16em]">
+            <li class="rounded-full border border-cloak/50 bg-black/35 px-3 py-1.5"><span class="text-smile">Chain</span> Ethereum</li>
+            <li class="rounded-full border border-cloak/50 bg-black/35 px-3 py-1.5"><span class="text-smile">Symbol</span> Vitoggoth</li>
+            <li class="rounded-full border border-cloak/50 bg-black/35 px-3 py-1.5"><span class="text-smile">Pair</span> ETH</li>
+            <li class="rounded-full border border-cloak/50 bg-black/35 px-3 py-1.5"><span class="text-smile">DEX</span> Uniswap</li>
+          </ul>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+          <div class="orbit" aria-hidden="true">
+            <span class="orbit-item" style="--x:50%;--y:0%"><span class="counterspin"><span class="eye"><span class="pupil"></span></span></span></span>
+            <span class="orbit-item" style="--x:85%;--y:15%"><span class="counterspin"><span class="eye eye-sm"><span class="pupil"></span></span></span></span>
+            <span class="orbit-item" style="--x:100%;--y:50%"><span class="counterspin"><span class="eye"><span class="pupil"></span></span></span></span>
+            <span class="orbit-item" style="--x:85%;--y:85%"><span class="counterspin"><span class="eye eye-sm"><span class="pupil"></span></span></span></span>
+            <span class="orbit-item" style="--x:50%;--y:100%"><span class="counterspin"><span class="eye"><span class="pupil"></span></span></span></span>
+            <span class="orbit-item" style="--x:15%;--y:85%"><span class="counterspin"><span class="eye eye-sm"><span class="pupil"></span></span></span></span>
+            <span class="orbit-item" style="--x:0%;--y:50%"><span class="counterspin"><span class="eye"><span class="pupil"></span></span></span></span>
+            <span class="orbit-item" style="--x:15%;--y:15%"><span class="counterspin"><span class="eye eye-sm"><span class="pupil"></span></span></span></span>
+          </div>
+          <figure class="relative overflow-hidden rounded-[2rem] border-4 border-smile bg-abyss shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+            <img src="logo.png" alt="Vitalik the Shoggoth in a green velvet cloak covered in eyes, yellow smile mask, phone in hand" width="768" height="1024" fetchpriority="high" class="w-full object-cover">
+            <figcaption class="absolute inset-x-3 bottom-3 rounded-2xl bg-smile px-4 py-3 text-[#14210c] shadow-lg">
+              <p class="text-[10px] font-extrabold uppercase tracking-[0.28em]">Costume check</p>
+              <p class="font-display text-2xl leading-none sm:text-3xl">HES DRESSED AS SHOGGOTH</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <div class="ticker-row">
+            <span>HES DRESSED AS SHOGGOTH</span><span class="mask"></span>
+            <span>$VITOGGOTH</span><span class="eye eye-sm"><span class="pupil"></span></span>
+            <span>ETHEREUM</span><span class="mask"></span>
+            <span>MANY EYES</span><span class="eye eye-sm"><span class="pupil"></span></span>
+            <span>ONE SMILE</span><span class="mask"></span>
+            <span>VITALIK THE SHOGGOTH</span><span class="eye eye-sm"><span class="pupil"></span></span>
+          </div>
+          <div class="ticker-row">
+            <span>HES DRESSED AS SHOGGOTH</span><span class="mask"></span>
+            <span>$VITOGGOTH</span><span class="eye eye-sm"><span class="pupil"></span></span>
+            <span>ETHEREUM</span><span class="mask"></span>
+            <span>MANY EYES</span><span class="eye eye-sm"><span class="pupil"></span></span>
+            <span>ONE SMILE</span><span class="mask"></span>
+            <span>VITALIK THE SHOGGOTH</span><span class="eye eye-sm"><span class="pupil"></span></span>
+          </div>
+        </div>
+      </div>
+
+      <section id="costume" class="mx-auto max-w-6xl px-4 py-16">
+        <div class="max-w-2xl">
+          <p class="text-xs font-bold uppercase tracking-[0.42em] text-smile">The costume</p>
+          <h2 class="mt-2 font-display text-4xl text-bone sm:text-6xl">Eyes on the velvet.<br>Smile on the face.</h2>
+          <p class="mt-4 text-lg leading-relaxed text-bone/85">
+            The prophecy was never a monster from the deep. It was a man in a cloak, checking his phone.
+            <strong class="text-smile"> HES DRESSED AS SHOGGOTH.</strong>
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <article class="velvet relative rounded-3xl border border-cloak/45 p-6 pt-7">
+            <span class="eye absolute right-5 top-5" aria-hidden="true"><span class="pupil"></span></span>
+            <p class="font-display text-4xl text-smile">01</p>
+            <h3 class="mt-2 text-2xl font-extrabold text-bone">The Cloak</h3>
+            <p class="mt-3 max-w-md leading-relaxed text-bone/80">Olive velvet, clasped at the throat, heavy as a bull market. White eyes are stitched into every fold. They watch the mempool so he doesn't have to.</p>
+          </article>
+          <article class="velvet relative rounded-3xl border border-cloak/45 p-6 pt-7">
+            <span class="eye absolute right-5 top-5" aria-hidden="true"><span class="pupil"></span></span>
+            <p class="font-display text-4xl text-smile">02</p>
+            <h3 class="mt-2 text-2xl font-extrabold text-bone">The Smile</h3>
+            <p class="mt-3 max-w-md leading-relaxed text-bone/80">Acid yellow. One calm curve. No eyes on the mask, because the eyes already have the rest of the outfit. Friendly. Incorrect. Perfect.</p>
+          </article>
+          <article class="velvet relative rounded-3xl border border-cloak/45 p-6 pt-7">
+            <span class="eye absolute right-5 top-5" aria-hidden="true"><span class="pupil"></span></span>
+            <p class="font-display text-4xl text-smile">03</p>
+            <h3 class="mt-2 text-2xl font-extrabold text-bone">The Phone</h3>
+            <p class="mt-3 max-w-md leading-relaxed text-bone/80">Still in his hand. The costume does not get between him and the timeline. Green candles, red candles, he has seen them and he is still smiling.</p>
+          </article>
+          <article class="velvet relative rounded-3xl border border-cloak/45 p-6 pt-7">
+            <span class="eye absolute right-5 top-5" aria-hidden="true"><span class="pupil"></span></span>
+            <p class="font-display text-4xl text-smile">04</p>
+            <h3 class="mt-2 text-2xl font-extrabold text-bone">The Chain</h3>
+            <p class="mt-3 max-w-md leading-relaxed text-bone/80">It lives on Ethereum. The name is Vitalik the Shoggoth. The symbol is Vitoggoth. You pay with ETH. The cloak does not accept anything else.</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="seam" aria-hidden="true"></div>
+
+      <section class="relative overflow-hidden bg-cloakdeep/80 py-16 text-center backdrop-blur-sm">
+        <p class="pointer-events-none absolute inset-0 flex items-center justify-center font-creep text-[22vw] leading-none text-cloak/25" aria-hidden="true">SHOGGOTH</p>
+        <div class="relative px-4">
+          <p class="text-xs font-bold uppercase tracking-[0.5em] text-bone/70">Say it with the eyes</p>
+          <h2 class="mx-auto mt-3 max-w-4xl font-display text-4xl leading-[0.92] text-smile sm:text-6xl md:text-7xl">HES DRESSED<br>AS SHOGGOTH</h2>
+        </div>
+      </section>
+
+      <div class="seam" aria-hidden="true"></div>
+
+      <section id="how" class="mx-auto max-w-6xl px-4 py-16">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div class="max-w-2xl">
+            <p class="text-xs font-bold uppercase tracking-[0.42em] text-smile">Ethereum only</p>
+            <h2 class="mt-2 font-display text-4xl text-bone sm:text-6xl">How to Buy</h2>
+            <p class="mt-4 text-lg leading-relaxed text-bone/85">
+              Four steps to swap ETH for <strong class="text-smile">$VITOGGOTH</strong> on Uniswap.
+              Bring a wallet, bring Ethereum, and don't buy a fake cloak.
+              <strong class="text-smile"> HES DRESSED AS SHOGGOTH.</strong>
+            </p>
+          </div>
+          <a class="btn-buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+        </div>
+
+        <ol class="mt-8 grid gap-4 md:grid-cols-2">
+          <li class="velvet rounded-3xl border border-cloak/45 p-6">
+            <p class="font-display text-5xl leading-none text-smile">01</p>
+            <h3 class="mt-3 text-2xl font-extrabold text-bone">Open a wallet</h3>
+            <p class="mt-3 leading-relaxed text-bone/80">Install an Ethereum wallet such as <a class="font-bold text-smile underline decoration-cloak underline-offset-4 hover:decoration-smile" href="https://metamask.io" target="_blank" rel="noopener noreferrer">MetaMask</a> or <a class="font-bold text-smile underline decoration-cloak underline-offset-4 hover:decoration-smile" href="https://rabby.io" target="_blank" rel="noopener noreferrer">Rabby</a>. Create the wallet and store the seed phrase offline. This is the pocket under the cloak. It holds your ETH and your $VITOGGOTH.</p>
+          </li>
+          <li class="velvet rounded-3xl border border-cloak/45 p-6">
+            <p class="font-display text-5xl leading-none text-smile">02</p>
+            <h3 class="mt-3 text-2xl font-extrabold text-bone">Load Ethereum</h3>
+            <p class="mt-3 leading-relaxed text-bone/80">Buy ETH on an exchange you already trust and withdraw it to your wallet on the Ethereum network. Leave extra ETH in the wallet. The swap and the gas are both paid in ETH. No other chain, no costume rental.</p>
+          </li>
+          <li class="velvet rounded-3xl border border-cloak/45 p-6">
+            <p class="font-display text-5xl leading-none text-smile">03</p>
+            <h3 class="mt-3 text-2xl font-extrabold text-bone">Swap on Uniswap</h3>
+            <p class="mt-3 leading-relaxed text-bone/80">Hit Buy Now and connect your wallet. Pay with ETH. Paste the contract so the token you receive is $VITOGGOTH. Read the rate, start with modest slippage, and raise it only if the swap fails. Then confirm in your wallet.</p>
+            <div class="ca-bar mt-5">
+              <div class="min-w-0 flex-1">
+                <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-bone/60">Paste this CA</p>
+                <code class="ca-code block truncate text-base">TBA</code>
+              </div>
+              <button type="button" class="btn-copy" data-copy data-label="COPY">COPY</button>
+            </div>
+            <a class="btn-buy mt-4 text-sm" href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+          </li>
+          <li class="velvet rounded-3xl border border-cloak/45 p-6">
+            <p class="font-display text-5xl leading-none text-smile">04</p>
+            <h3 class="mt-3 text-2xl font-extrabold text-bone">Confirm the fit</h3>
+            <p class="mt-3 leading-relaxed text-bone/80">Wait for the Ethereum transaction to confirm. Add the contract to your wallet so the $VITOGGOTH balance shows up. Then open the chart. If the smile is still on, you did it right.</p>
+            <a class="btn-chart mt-5 text-sm" href="https://dexscreener.com/ethereum/TBA" target="_blank" rel="noopener noreferrer">Chart</a>
+          </li>
+        </ol>
+      </section>
+
+      <section id="chart" class="mx-auto max-w-6xl px-4 pb-16">
+        <div class="velvet overflow-hidden rounded-[2rem] border border-cloak/50">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-cloak/30 px-5 py-5 sm:px-8">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.42em] text-smile">Dexscreener</p>
+              <h2 class="mt-1 font-display text-4xl text-bone sm:text-5xl">Chart</h2>
+              <p class="mt-2 max-w-xl text-bone/75">The Ethereum pair, embedded. Every candle is another eye. HES DRESSED AS SHOGGOTH.</p>
+            </div>
+            <a class="btn-chart" href="https://dexscreener.com/ethereum/TBA" target="_blank" rel="noopener noreferrer">Chart</a>
+          </div>
+          <iframe
+            class="chart-frame"
+            title="Dexscreener chart for Vitoggoth on Ethereum"
+            loading="lazy"
+            src="https://dexscreener.com/ethereum/TBA?embed=1&amp;loadChartSettings=0&amp;trades=0&amp;tabs=0&amp;info=0&amp;chartLeftToolbar=0&amp;chartDefaultOnMobile=1&amp;chartTheme=dark&amp;theme=dark&amp;chartStyle=1&amp;chartType=usd&amp;interval=15"></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-cloak/40 bg-abyss/80">
+      <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="font-display text-3xl text-smile">VITALIK THE SHOGGOTH</p>
+          <p class="mt-2 font-black tracking-wide text-bone">HES DRESSED AS SHOGGOTH</p>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-bone/65">$VITOGGOTH is a meme on Ethereum with no intrinsic value and no promise of profit. This is not financial advice. Fan-made costume party. Not affiliated with Vitalik Buterin or the Ethereum Foundation. Copy the contract from this page and ignore every other cloak.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="https://t.me/Vitoggoth" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <img src="tg.png" alt="" width="48" height="48" class="h-12 w-12 rounded-full object-cover transition hover:scale-105">
+          </a>
+          <a href="https://x.com/Vitoggoth" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <img src="x.png" alt="" width="48" height="48" class="h-12 w-12 rounded-lg object-cover ring-1 ring-smile/50 transition hover:scale-105">
+          </a>
+        </div>
+      </div>
+      <p class="pb-24 text-center text-xs uppercase tracking-[0.22em] text-bone/40 md:pb-8">Symbol Vitoggoth · Ethereum · © 2026</p>
+    </footer>
+
+    <div class="fixed inset-x-0 bottom-0 z-50 flex gap-2 border-t border-cloak/50 bg-abyss/92 p-3 backdrop-blur md:hidden">
+      <button type="button" class="btn-copy flex-1 !py-3" data-copy data-label="COPY CA">COPY CA</button>
+      <a class="btn-buy flex-1 !py-3 text-sm" href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </div>
+
+    <div id="toast" class="toast" role="status"></div>
+    <p id="copy-status" class="sr-only" aria-live="polite"></p>
+  </div>
+
+  <script>
+    const CA = "TBA";
+    let toastTimer;
+
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.textContent = "CA copied: " + CA;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 1600);
+    }
+
+    function fallbackCopy(done) {
+      const area = document.createElement("textarea");
+      area.value = CA;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.select();
+      try { document.execCommand("copy"); } catch (err) { /* ignore */ }
+      document.body.removeChild(area);
+      done();
+    }
+
+    function copyCA(btn) {
+      const done = () => {
+        showToast();
+        const live = document.getElementById("copy-status");
+        if (live) live.textContent = "Copied contract address " + CA;
+        if (!btn) return;
+        const label = btn.dataset.label || btn.textContent;
+        btn.dataset.label = label;
+        btn.textContent = "COPIED";
+        clearTimeout(btn._timer);
+        btn._timer = setTimeout(() => { btn.textContent = label; }, 1600);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(CA).then(done).catch(() => fallbackCopy(done));
+      } else {
+        fallbackCopy(done);
+      }
+    }
+
+    document.body.addEventListener("click", (event) => {
+      const btn = event.target.closest("[data-copy]");
+      if (!btn) return;
+      copyCA(btn);
+    });
+
+    const pupils = Array.from(document.querySelectorAll(".eye")).map((eye) => ({
+      eye,
+      pupil: eye.querySelector(".pupil")
+    })).filter((item) => item.pupil);
+
+    window.addEventListener("mousemove", (event) => {
+      for (const item of pupils) {
+        const rect = item.eye.getBoundingClientRect();
+        const dx = event.clientX - (rect.left + rect.width / 2);
+        const dy = event.clientY - (rect.top + rect.height / 2);
+        const angle = Math.atan2(dy, dx);
+        const dist = Math.min(rect.width * 0.18, Math.hypot(dx, dy) / 14);
+        item.pupil.style.transform = "translate(" + (Math.cos(angle) * dist) + "px," + (Math.sin(angle) * dist) + "px)";
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
